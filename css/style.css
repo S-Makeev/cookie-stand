@@ -1,0 +1,50 @@
+
+
+section {
+  width: 75%;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+
+p {
+  font-size: 1.25em;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 15px;
+}
+
+ul {
+  font-size: 1.75em;
+  font-family: 'Archivo', sans-serif;
+  list-style-type: "🐾   ";
+  list-style-position: inside;
+  margin-bottom: 15px;
+}
+
+li {
+  font-family: 'Archivo', sans-serif;
+  font-size: .75em;
+  margin-top: 15px;
+
+}
+
+
+
+table * {
+  font-family: 'Archivo', sans-serif;
+  background-color: #f8f8f8;
+  border: 1px double #020005;
+  padding: 8px;
+}
+
+th {
+  font-weight:90;
+}
+
+td {
+  text-align: center;
+}
+
+

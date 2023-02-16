@@ -31,8 +31,7 @@ Store.prototype.cookieGen = function () {
   }
 }
 
-function headerTable ()
-{
+function headerTable() {
   let tHead = document.createElement('thead');
   let table = document.getElementById('salesTable');
   table.appendChild(tHead);
@@ -43,17 +42,44 @@ function headerTable ()
   let emptyCell = document.createElement('th');
   row.appendChild(emptyCell);
 
-  for(let i = 0; i < time.length; i++){
+  for (let i = 0; i < time.length; i++) {
     let heading = document.createElement('th');
     heading.textContent = time[i];
     row.appendChild(heading);
   }
-    let totalCell = document.createElement('th');
-    totalCell.textContent = 'Total'
-    row.appendChild(totalCell);
-
+  let totalCell = document.createElement('th');
+  totalCell.textContent = 'Total'
+  row.appendChild(totalCell);
 }
 
+function footerTable() {
+  let tHead = document.createElement('tfoot');
+  let table = document.getElementById('salesTable');
+  table.appendChild(tHead);
+
+  let row = document.createElement('tr');
+  tHead.appendChild(row);
+
+  let timeTotal = document.createElement('th');
+  timeTotal.textContent = 'Hrly Total';
+  row.appendChild(timeTotal);
+  
+  let grandTotal = 0;
+  for (let i = 0; i < time.length; i++) {
+    let sum = 0;
+    for (let j = 0; j < storeArr.length; j++) {
+      sum += storeArr[j].CookieBought[i];
+      grandTotal += storeArr[j].CookieBought[i];
+    }
+    let footerTotal = document.createElement('th');
+    footerTotal.textContent = sum;
+    row.appendChild(footerTotal);
+  }
+
+  let totalCell = document.createElement('th');
+  totalCell.textContent = grandTotal;
+  row.appendChild(totalCell);
+}
 
 Store.prototype.render = function () {
 
@@ -88,6 +114,12 @@ let lima = new Store("Lima", 2, 16, 4.6);
 //Pushing new objects into unifying array
 storeArr.push(seattle, tokyo, dubai, paris, lima);
 
+function renderIt() {
+
+}
+
+
+
 //Render function
 function renderAll() {
   for (let i = 0; i < storeArr.length; i++) {
@@ -98,7 +130,7 @@ function renderAll() {
 
 renderAll();
 headerTable();
-
+footerTable();
 
 
 

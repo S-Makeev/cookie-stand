@@ -1,12 +1,16 @@
 'use strict'
 
+
+
+
+
+
 //******* GLOBALS  *************
 let time = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 
 let storeArr = [];
 //~~~~~~~~Refactoring process ~~~~~~~~/
-
 
 
 //***********Constructor *****************/
@@ -75,11 +79,12 @@ function footerTable() {
     footerTotal.textContent = sum;
     row.appendChild(footerTotal);
   }
-
   let totalCell = document.createElement('th');
   totalCell.textContent = grandTotal;
   row.appendChild(totalCell);
 }
+
+
 
 Store.prototype.render = function () {
 
@@ -114,9 +119,7 @@ let lima = new Store("Lima", 2, 16, 4.6);
 //Pushing new objects into unifying array
 storeArr.push(seattle, tokyo, dubai, paris, lima);
 
-function renderIt() {
 
-}
 
 
 
@@ -135,9 +138,31 @@ footerTable();
 
 
 
+let myCookieForm = document.getElementById('cookieForm');
+myCookieForm.addEventListener('submit', handleFormSubmit);
 
+function handleFormSubmit(event)
+{
+event.preventDefault();
+let location = event.target.location.value;
+let minCust = +event.target.minCust.value;
+let maxCust = +event.target.maxCust.value;
+let avgCookieSales = +event.target.avgCookieSales.value;
 
+ let newStore = new Store(location, minCust, maxCust, avgCookieSales);
+    removeFooter('tfoot');
+    storeArr.push(newStore);
+    
+    function removeFooter(footerId)
+    {
+      var ele = document.getElementsByTagName(footerId);
+      return ele[0].parentNode.removeChild(ele[0]);
+    }
 
+        newStore.cookieGen();
+        newStore.render();
+        footerTable(); 
+}
 
 
 

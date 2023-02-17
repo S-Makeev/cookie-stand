@@ -1,12 +1,10 @@
 'use strict'
-
 //******* GLOBALS  *************
 let time = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 
 let storeArr = [];
 //~~~~~~~~Refactoring process ~~~~~~~~/
-
 
 
 //***********Constructor *****************/
@@ -63,7 +61,7 @@ function footerTable() {
   let timeTotal = document.createElement('th');
   timeTotal.textContent = 'Hrly Total';
   row.appendChild(timeTotal);
-  
+
   let grandTotal = 0;
   for (let i = 0; i < time.length; i++) {
     let sum = 0;
@@ -75,7 +73,6 @@ function footerTable() {
     footerTotal.textContent = sum;
     row.appendChild(footerTotal);
   }
-
   let totalCell = document.createElement('th');
   totalCell.textContent = grandTotal;
   row.appendChild(totalCell);
@@ -103,8 +100,6 @@ Store.prototype.render = function () {
   tableRow.appendChild(totalElem);
 }
 
-
-
 //Creating new objects with unique params
 let seattle = new Store("Seattle", 23, 65, 6.3);
 let tokyo = new Store("Tokyo", 3, 24, 1.2)
@@ -113,12 +108,6 @@ let paris = new Store("Paris", 20, 38, 2.3);
 let lima = new Store("Lima", 2, 16, 4.6);
 //Pushing new objects into unifying array
 storeArr.push(seattle, tokyo, dubai, paris, lima);
-
-function renderIt() {
-
-}
-
-
 
 //Render function
 function renderAll() {
@@ -132,12 +121,28 @@ renderAll();
 headerTable();
 footerTable();
 
+let myCookieForm = document.getElementById('cookieForm');
+myCookieForm.addEventListener('submit', handleFormSubmit);
 
+function handleFormSubmit(event) {
+  event.preventDefault();
+  let location = event.target.location.value;
+  let minCust = +event.target.minCust.value;
+  let maxCust = +event.target.maxCust.value;
+  let avgCookieSales = +event.target.avgCookieSales.value;
 
+  let newStore = new Store(location, minCust, maxCust, avgCookieSales);
+  removeFooter('tfoot');
+  storeArr.push(newStore);
 
-
-
-
+  function removeFooter(footerId) {
+    var ele = document.getElementsByTagName(footerId);
+    return ele[0].parentNode.removeChild(ele[0]);
+  }
+  newStore.cookieGen();
+  newStore.render();
+  footerTable();
+}
 
 
 

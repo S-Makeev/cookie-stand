@@ -121,6 +121,7 @@ renderAll();
 headerTable();
 footerTable();
 
+//EVENT HANDLER SECTION
 let myCookieForm = document.getElementById('cookieForm');
 myCookieForm.addEventListener('submit', handleFormSubmit);
 
@@ -143,7 +144,6 @@ function handleFormSubmit(event) {
   newStore.render();
   footerTable();
 }
-
 
 
 
